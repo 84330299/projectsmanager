@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xxb.model.mapper.AdviceProgressMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.xxb.model.entity.AdviceProgress">
+        <id column="id" property="id"/>
+        <result column="advice_id" property="adviceId"/>
+        <result column="status" property="status"/>
+        <result column="status_description" property="statusDescription"/>
+        <result column="create_time" property="createTime"/>
+        <result column="user_id" property="userId"/>
+        <result column="delete_flag" property="deleteFlag"/>
+    </resultMap>
+
+    <sql id="AdviceProgressColumn">
+        id,advice_id,status,status_description,create_time,user_id,delete_flag
+    </sql>
+
+    <select id="query" resultType="com.xxb.model.entity.AdviceProgress">
+        SELECT <include refid="AdviceProgressColumn"></include> FROM advice_progress where delete_flag=0
+    </select>
+
+    <select id="getAdviceByIdAndStatus" resultType="java.lang.String">
+        select ap.status_description from advice_progress ap where ap.advice_id=#{adviceId} and ap.status=#{status} and ap.delete_flag=0 order by ap.create_time
+    </select>
+
+    <select id="getUserByAdvice" resultType="com.xxb.model.entity.Users">
+        select
+          u.id,u.name,u.group,u.post,u.user_name,u.user_password,u.salt,u.telephone,u.qq_email,u.create_time,u.login_time,u.status,u.delete_flag
+         from advice_progress AS ap LEFT JOIN users AS u on u.id=ap.user_id
+         where ap.advice_id=#{adviceId} and ap.status=#{status} and ap.delete_flag=0 group by u.id
+    </select>
+
+    <update id="updateDeleteFlagById">
+        UPDATE advice_progress ap SET ap.delete_flag=1 where advice_id=#{adviceId}
+    </update>
+
+    <update id="updStatus">
+        UPDATE advice_progress SET status=#{adviceStatus} where advice_id=#{adviceId}
+    </update>
+
+    <update id="updateDeleteFalegStatus">
+        update advice_progress ap
+        set ap.delete_flag=1
+        where 1 AND ap.advice_id IN
+        <foreach collection="ids" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+</mapper>

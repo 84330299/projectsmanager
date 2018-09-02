@@ -1,0 +1,92 @@
+package ${package.Controller};
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import io.swagger.annotations.ApiOperation;
+import com.xxb.dto.ResultJson;
+
+#if(${restControllerStyle})
+#else
+import org.springframework.stereotype.Controller;
+#end
+#if(${superControllerClassPackage})
+import ${superControllerClassPackage};
+#end
+
+/**
+ * @author ${author}
+ * @since ${date}
+ */
+#if(${restControllerStyle})
+@RestController
+#else
+@Controller
+#end
+@RequestMapping("#if(${package.ModuleName})/${package.ModuleName}#end/#if(${controllerMappingHyphenStyle})${controllerMappingHyphen}#else${table.entityPath}#end")
+#if(${kotlin})
+class ${table.controllerName}#if(${superControllerClass}) : ${superControllerClass}()#end
+
+#else
+#if(${superControllerClass})
+public class ${table.controllerName} extends ${superControllerClass} {
+#else
+public class ${table.controllerName} {
+
+    @Autowired
+    private ${table.serviceName} ${table.serviceName};
+
+    /**
+    * 列表
+    */
+    @ApiOperation(value = "列表查询")
+    @GetMapping("/list")
+    @RequiresPermissions("${table.Name}:${pathName}:list")
+    public ResultJson list(@RequestParam Map<String, Object> params){
+        Object obj = ${table.serviceName}Service.queryPage(params);
+        return null;
+    }
+
+    /**
+    * 保存
+    */
+    @ApiOperation(value = "保存")
+    @PostMapping("/save")
+    @RequiresPermissions("${table.Name}:${pathName}:save")
+    public R save(@RequestBody ${table.Name}Entity ${table.Name}){
+        ${table.serviceName}Service.insert(${classname});
+        return null;
+    }
+
+    /**
+    * 修改
+    */
+    @ApiOperation(value = "修改")
+    @PutMapping("/update")
+    @RequiresPermissions("${moduleName}:${pathName}:update")
+    public R update(@RequestBody ${table.Name}Entity ${table.Name}){
+            ValidatorUtils.validateEntity(${table.Name});
+        ${table.serviceName}Service.updateAllColumnById(${table.Name});//全部更新
+        return null;
+    }
+
+    /**
+    * 删除
+    */
+    @ApiOperation(value = "删除")
+    @DeleteMapping("/delete/{id}")
+    @RequiresPermissions("${moduleName}:${pathName}:delete")
+    public R delete(@PathVariable Integer id){
+        ${table.serviceName}Service.delete(id);
+        return null;
+    }
+
+#end
+
+}
+
+#end

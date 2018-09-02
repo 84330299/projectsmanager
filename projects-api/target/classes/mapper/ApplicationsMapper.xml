@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xxb.model.mapper.ApplicationsMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.xxb.model.entity.Applications">
+        <id column="id" property="id" />
+        <result column="project_id" property="projectId" />
+        <result column="system_type" property="systemType" />
+        <result column="download_url" property="downloadUrl" />
+        <result column="download_total" property="downloadTotal" />
+        <result column="start_time" property="startTime" jdbcType="TIMESTAMP"/>
+        <result column="end_time" property="endTime" jdbcType="TIMESTAMP"/>
+        <result column="application_store_id" property="applicationStoreId" />
+        <result column="update_description" property="updateDescription" />
+        <result column="role_id" property="roleId" />
+        <result column="user_id" property="userId" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="constraint_update" property="constraintUpdate" />
+        <result column="size" property="size" />
+        <result column="dict_id" property="dictId" />
+        <result column="delete_flag" property="deleteFlag" />
+        <result column="status" property="status"/>
+        <result column="complete_num" property="completeNum"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+
+
+    <sql id="ApplicationsColumn">
+        id,project_id,system_type,download_url,download_total,start_time,end_time,application_store_id,update_description,
+        role_id,user_id,create_time,create_time,constraint_update,size,dict_id,delete_flag,status,complete_num,update_time
+    </sql>
+
+    <update id="upStatus">
+        UPDATE applications SET  status=#{status} where id=#{id}
+    </update>
+
+    <update id="updateCompleteNum">
+        UPDATE applications SET complete_num=complete_num+1 where id=#{id}
+    </update>
+
+    <select id="getAppsByProjectIds" resultMap="BaseResultMap">
+        select <include refid="ApplicationsColumn"></include> FROM applications
+        where delete_flag=0 AND project_id IN
+        <foreach item="item" collection="ids"  index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <select id="selectApplicationsList" resultType="com.xxb.web.dto.ProjectManagerDto">
+        select a.id,p.product_name as projectName,
+                p.version as version,
+                a.system_type as systemType,
+                count(ad.id) AS adviceCount,
+                sum(ad.status=1) as adviceSolveNum,
+                sum(ad.status=0) as adviceUnsolveNum,
+                sum(ad.status=2) as adviceDeferNum,
+                a.create_time AS crateTime,
+                a.status AS status,
+                u.name AS userName
+            from applications a
+            left JOIN projects p on p.id=a.project_id
+            left JOIN advice ad on ad.projects_id=p.id and ad.system_type=a.system_type
+            LEFT JOIN users u ON  u.id=a.user_id
+            where 1=1 and a.delete_flag=0
+            <if test="app.userName!=null and app.userName!=''">
+                AND u.name LIKE CONCAT(CONCAT('%',#{app.userName},'%'))
+            </if>
+            <if test="app.projectName!=null and app.projectName!=''">
+                AND p.product_name LIKE CONCAT(CONCAT('%',#{app.projectName},'%'))
+            </if>
+            <if test="app.applicationId!=null and app.applicationId!=''">
+                AND a.id=#{app.applicationId}
+            </if>
+            <if test="app.systemType!=null">
+                AND a.system_type=#{app.systemType}
+            </if>
+            <if test="app.status!=null and app.status!=''">
+                AND a.status=#{app.status}
+            </if>
+            <if test="app.startTime!=null">
+                AND a.create_time>=#{app.startTime}
+            </if>
+            <if test="app.endTime!=null">
+                AND a.create_time &lt;#{app.endTime}
+            </if>
+            GROUP BY a.id
+            order by a.status ASC,a.update_time desc
+    </select>
+
+    <select id="selectExportPackage" resultType="com.xxb.web.dto.ApplicationManagerDto">
+         select pa.id,pr.product_name AS projectName,
+           pr.version AS version,pa.update_description AS updateDescription,
+           app.system_type AS systemType,u.name AS userName,
+           pa.create_time AS createTime,pa.download_url AS downloadUrl,
+          pa.download_total AS downloadTotal,pa.download_complete AS completeNum,
+          pa.force_update AS constraintUpdate,pa.start_time AS startTime,
+          pa.end_time AS endTime,pa.sizes AS 'size',pa.status AS status,
+          pa.dict_ids AS dictId
+           from packages pa
+            LEFT JOIN applications app ON  app.id=application_id
+            LEFT JOIN projects pr ON pr.id=app.project_id
+            LEFT JOIN users u ON u.id=pa.user_id
+            where 1=1 and pa.delete_flag=0
+            <if test="ids!=null">
+                and pa.id IN
+                <foreach collection="ids" separator="," item="item" open="(" close=")">
+                    #{item}
+                </foreach>
+            </if>
+    </select>
+</mapper>

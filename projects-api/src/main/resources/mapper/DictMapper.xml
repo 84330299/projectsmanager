@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xxb.model.mapper.DictMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.xxb.model.entity.Dict">
+        <id column="id" property="id" />
+        <result column="pid" property="pid" />
+        <result column="name" property="name" />
+        <result column="type" property="type" />
+        <result column="code" property="code" />
+        <result column="value" property="value" />
+        <result column="ordered" property="ordered" />
+        <result column="weight" property="weight" />
+        <result column="remark" property="remark" />
+        <result column="create_time" property="createTime" />
+        <result column="delete_flag" property="deleteFlag" />
+    </resultMap>
+
+
+    <select id="getGroupOrPost" resultType="com.xxb.web.dto.ItemDto">
+        SELECT
+              d.id AS id,
+              d.name AS `name`
+        FROM `dict` d
+        WHERE d.type = #{type} AND d.delete_flag = 1
+        ORDER BY d.ordered
+
+    </select>
+
+    <update id="deleteDict">
+        UPDATE dict d
+        SET d.delete_flag = 0
+        WHERE
+        id in
+        <foreach collection="list" close=")" open="(" item="item" separator="," index="i" >
+            #{item}
+        </foreach>
+    </update>
+
+</mapper>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xxb.model.mapper.PackagesMapper">
+
+    <select id="selectDetailPackage" resultType="com.xxb.web.dto.ApplicationDetailDto">
+        select pa.id,pr.product_name AS productName,pr.version,app.system_type AS systemType,
+            pa.download_url AS downloadUrl,pa.download_total AS downloadTotal,
+            pa.download_complete AS completeNum,pa.sizes AS 'size',
+            u.name AS userName,pa.create_time AS createTime,
+            pa.start_time AS startTime,pa.end_time AS endTime,
+            pa.update_description AS updateDescription
+         from packages pa
+          LEFT JOIN applications app ON app.id=pa.application_id
+          LEFT JOIN projects pr ON pr.id=app.project_id
+          LEFT JOIN users u ON u.id=pa.user_id
+          where 1=1 AND pa.delete_flag=0
+           AND pa.id=#{id}
+          order by pa.create_time
+    </select>
+
+    <select id="selectPackageList" resultType="com.xxb.web.dto.ApplicationManagerDto">
+          select pa.id,pr.product_name AS projectName,
+           pr.version AS version,pa.update_description AS updateDescription,
+           app.system_type AS systemType,u.name AS userName,
+           pa.create_time AS createTime,pa.download_url AS downloadUrl,
+          pa.download_total AS downloadTotal,pa.download_complete AS completeNum,
+          pa.force_update AS constraintUpdate,pa.start_time AS startTime,
+          pa.end_time AS endTime,pa.sizes AS 'size',pa.status AS status,
+          pa.dict_ids AS dictId
+           from packages pa
+            LEFT JOIN applications app ON  app.id=application_id
+            LEFT JOIN projects pr ON pr.id=app.project_id
+            LEFT JOIN users u ON u.id=pa.user_id
+            where 1=1 and pa.delete_flag=0
+              <if test="cpd.projectName!=null">
+                  and pr.product_name=#{cpd.projectName}
+              </if>
+              <if test="cpd.systemType!=null">
+                  and app.system_type=#{cpd.systemType}
+              </if>
+              <if test="cpd.status!=null">
+                  and pa.status=#{cpd.status}
+              </if>
+              <if test="cpd.startTime!=null">
+                  and pa.create_time>=#{cpd.startTime}
+              </if>
+              <if test="cpd.endTime!=null">
+                  and pa.create_time &lt;#{cpd.endTime}
+              </if>
+              <if test="cpd.packageId!=null">
+                  and pa.id=#{cpd.packageId}
+              </if>
+            order by pa.status
+    </select>
+
+    <update id="increaseDownloadNum">
+        UPDATE packages SET download_complete=download_complete+1 where id=#{id}
+    </update>
+
+    <select id="selectNewest" resultType="com.xxb.web.dto.PackageDownloadDto">
+        select p.download_url AS downloadUrl,
+          p.download_total AS downloadTotal,
+          p.sizes AS sizes,
+          p.download_complete AS downloadComplete,
+          p.update_description AS updateDescription,
+          p.force_update AS forceUpdate,
+          p.code AS code,
+          pr.version AS version
+        FROM packages p
+        LEFT JOIN applications app on app.id=p.application_id
+	    LEFT JOIN projects pr on pr.id=app.project_id
+	    where 1
+	    <if test="param.projectName!=null and param.projectName!=''">
+            AND pr.product_name=#{param.projectName}
+        </if>
+        <if test="param.systemType!=null">
+            AND app.system_type =#{param.systemType}
+        </if>
+	    ORDER BY p.create_time desc
+	    limit 1
+    </select>
+
+    <select id="selectPackageNew" resultType="com.xxb.model.entity.Packages">
+        select
+          id,
+          download_url AS downloadUrl,
+          download_total AS downloadTotal,
+          application_id AS applicationId,
+          delete_flag AS deleteFlag,
+          status AS status,
+          sizes AS sizes,
+          dict_ids AS dict_ids,
+          download_complete AS downloadComplete,
+          update_description AS updateDescription,
+          force_update AS forceUpdate,
+          user_id AS userId,
+          create_time AS createTime,
+          start_time AS startTime,
+          end_time AS endTime,
+          role_id AS roleId
+        from packages order by create_time desc limit 1
+    </select>
+</mapper>

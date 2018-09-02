@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xxb.model.mapper.AdviceMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.xxb.model.entity.Advice">
+        <id column="id" property="id"/>
+        <result column="projects_id" property="projectsId"/>
+        <result column="system_type" property="systemType"/>
+        <result column="remark" property="remark"/>
+        <result column="title" property="title"/>
+        <result column="advice_description" property="adviceDescription"/>
+        <result column="pic_url" property="picUrl"/>
+        <result column="role_id" property="roleId"/>
+        <result column="create_time" property="createTime"/>
+        <result column="resolve_time" property="resolveTime"/>
+        <result column="user_id" property="userId"/>
+        <result column="status" property="status"/>
+        <result column="delete_flag" property="deleteFlag"/>
+        <result column="dict_id" property="problemType"/>
+        <result column="telephone" property="telephone"/>
+        <result column="advice_source" property="adviceSource"/>
+    </resultMap>
+
+    <sql id="AdviceColumn">
+        id,projects_id,system_type,remark,title,advice_description,pic_url,role_id,create_time,
+        resolve_time,user_id,status,delete_flag,dict_id,telephone,advice_source
+    </sql>
+
+    <select id="query" resultType="com.xxb.model.entity.Advice">
+        SELECT <include refid="AdviceColumn"></include> FROM advice where delete_flag=0
+    </select>
+
+    <select id="getAdvice" resultType="com.xxb.web.dto.AdviceStatusDescriptionDto">
+        select
+         a.id,a.system_type AS systemType,a.create_time AS createTime,remark,title,advice_description AS adviceDescription,
+         pic_url AS picUrl,p.product_name AS projectName,p.version AS version,a.status,u.name AS userName,dict_id AS dictId
+         from advice AS a LEFT JOIN projects AS p ON p.id= a.projects_id
+              LEFT JOIN users AS u ON u.id=a.user_id
+         where a.id=#{id} and a.status=#{status} and a.delete_flag=0
+    </select>
+
+    <!--<select id="selectAdvicePage" resultType="com.xxb.model.entity.Advice">-->
+        <!--select-->
+          <!--id,system_type AS systemType,projects_id AS projectsId,remark,title,advice_description AS adviceDescription,pic_url AS picUrl,-->
+          <!--role_id AS roleId,create_time AS createTime,resolve_time AS resolveTime,user_id AS userId,status,delete_flag AS deleteFlag,dict_id AS problemType-->
+          <!--from advice where 1 AND delete_flag=0-->
+          <!--<if test="ca!=null and ca.projectName!=null">-->
+            <!--AND projects_id IN-->
+              <!--<foreach item="item" collection="ca.ids" index="index" open="(" separator="," close=")">-->
+                <!--#{item}-->
+              <!--</foreach>-->
+          <!--</if>-->
+          <!--<if test="ca!=null and ca.systemType!=null">-->
+            <!--AND system_type=#{ca.systemType}-->
+          <!--</if>-->
+          <!--<if test="ca!=null and ca.adviceType!=null">-->
+            <!--AND dict_id=#{ca.adviceType}-->
+          <!--</if>-->
+          <!--<if test="ca!=null and ca.startTime!=null">-->
+              <!--AND create_time>=#{ca.startTime}-->
+          <!--</if>-->
+          <!--<if test="ca!=null and ca.endTime!=null">-->
+              <!--AND create_time &lt;#{ca.endTime}-->
+          <!--</if>-->
+          <!--<if test="ca!=null and ca.adviceStatus!=null">-->
+              <!--AND status=#{ca.adviceStatus}-->
+          <!--</if>-->
+    <!--</select>-->
+
+    <select id="selectAdvicePage" resultType="com.xxb.web.dto.AdviceManagerDto">
+        select
+          a.id,
+          pr.product_name AS projectName,
+          pr.version,
+          a.system_type AS systemType,
+          d.name AS probleType,
+          a.title AS title,
+          a.pic_url AS picUrl,
+          a.remark AS remark,
+          u.user_name AS userName,
+          a.create_time AS createTime,
+          u2.user_name AS resolveName,
+          ap.status_description AS resolveDescription,
+          ap.create_time AS resolveTime,
+          a.status
+        from advice a
+          LEFT JOIN projects pr ON pr.id=a.projects_id
+          LEFT JOIN dict d ON d.id = a.dict_id AND type = 4
+          LEFT JOIN advice_progress ap ON ap.advice_id = a.id and ap.`status`=1 AND ap.delete_flag =0
+          LEFT JOIN users u ON u.id=a.user_id
+          LEFT JOIN users u2 ON u2.id = ap.user_id
+        where 1=1 AND a.delete_flag=0
+        <if test="ca!=null and ca.projectName!=null">
+            AND pr.product_name=#{ca.projectName}
+        </if>
+        <if test="ca!=null and ca.systemType!=null">
+            AND a.system_type=#{ca.systemType}
+        </if>
+        <if test="ca!=null and ca.adviceType!=null">
+            AND d.dict_id=#{ca.adviceType}
+        </if>
+        <if test="ca!=null and ca.startTime!=null">
+            AND a.create_time>=#{ca.startTime}
+        </if>
+        <if test="ca!=null and ca.endTime!=null">
+            AND a.create_time &lt;#{ca.endTime}
+        </if>
+        <if test="ca!=null and ca.adviceStatus!=null">
+            AND a.status=#{ca.adviceStatus}
+        </if>
+        GROUP BY a.id
+        order by a.create_time desc
+    </select>
+
+    <update id="updateDeleteFlagById">
+        UPDATE advice a SET a.delete_flag=1 where id=#{id}
+    </update>
+
+    <update id="updateDeleteFalegStatus">
+        update advice a
+        set a.delete_flag=1
+        where 1 AND a.id IN
+            <foreach collection="ids" item="item" index="index" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+    </update>
+
+    <update id="updataStatus">
+        UPDATE advice SET status=#{adviceStatus} where id=#{id}
+    </update>
+
+    <select id="getAdviceType" resultType="com.xxb.web.dto.AdviceTypeDto">
+        SELECT d.id AS dictId,d.value AS typeName FROM advice a LEFT JOIN dict d ON d.id=a.dict_id where d.type=#{code} and a.delete_flag=0 group by dictId
+    </select>
+
+    <select id="getAdvicesByProjects" resultMap="BaseResultMap">
+      SELECT <include refid="AdviceColumn"></include> FROM advice
+        where delete_flag=0 AND
+        projects_id IN
+        <foreach item="item" collection="projectIds" index="index" open="(" separator="," close=")">
+          #{item}
+        </foreach>
+    </select>
+</mapper>

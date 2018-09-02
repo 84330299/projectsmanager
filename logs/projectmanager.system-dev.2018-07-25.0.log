@@ -1,0 +1,146 @@
+[2018-07-25 23:30:22.980] [main] [INFO ] com.xxb.model.service.IUsersServiceTest - Starting IUsersServiceTest on chendeMacBook-Pro.local with PID 12004 (started by chen in /Users/chen/Documents/XXB/projectsmanager/projects-api)
+[2018-07-25 23:30:22.984] [main] [INFO ] com.xxb.model.service.IUsersServiceTest - No active profile set, falling back to default profiles: default
+[2018-07-25 23:30:24.419] [main] [WARN ] org.mybatis.spring.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'adviceMapper' and 'com.xxb.model.mapper.AdviceMapper' mapperInterface. Bean already defined with the same name!
+[2018-07-25 23:30:24.420] [main] [WARN ] org.mybatis.spring.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'adviceProgressMapper' and 'com.xxb.model.mapper.AdviceProgressMapper' mapperInterface. Bean already defined with the same name!
+[2018-07-25 23:30:24.420] [main] [WARN ] org.mybatis.spring.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'applicationsMapper' and 'com.xxb.model.mapper.ApplicationsMapper' mapperInterface. Bean already defined with the same name!
+[2018-07-25 23:30:24.421] [main] [WARN ] org.mybatis.spring.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'bugCollectionMapper' and 'com.xxb.model.mapper.BugCollectionMapper' mapperInterface. Bean already defined with the same name!
+[2018-07-25 23:30:24.421] [main] [WARN ] org.mybatis.spring.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'bugOperationMapper' and 'com.xxb.model.mapper.BugOperationMapper' mapperInterface. Bean already defined with the same name!
+[2018-07-25 23:30:24.421] [main] [WARN ] org.mybatis.spring.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'dictMapper' and 'com.xxb.model.mapper.DictMapper' mapperInterface. Bean already defined with the same name!
+[2018-07-25 23:30:24.422] [main] [WARN ] org.mybatis.spring.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'loginLogMapper' and 'com.xxb.model.mapper.LoginLogMapper' mapperInterface. Bean already defined with the same name!
+[2018-07-25 23:30:24.422] [main] [WARN ] org.mybatis.spring.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'logsMapper' and 'com.xxb.model.mapper.LogsMapper' mapperInterface. Bean already defined with the same name!
+[2018-07-25 23:30:24.423] [main] [WARN ] org.mybatis.spring.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'menuMapper' and 'com.xxb.model.mapper.MenuMapper' mapperInterface. Bean already defined with the same name!
+[2018-07-25 23:30:24.423] [main] [WARN ] org.mybatis.spring.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'msgMapper' and 'com.xxb.model.mapper.MsgMapper' mapperInterface. Bean already defined with the same name!
+[2018-07-25 23:30:24.423] [main] [WARN ] org.mybatis.spring.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'msgSendMapper' and 'com.xxb.model.mapper.MsgSendMapper' mapperInterface. Bean already defined with the same name!
+[2018-07-25 23:30:24.424] [main] [WARN ] org.mybatis.spring.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'packagesMapper' and 'com.xxb.model.mapper.PackagesMapper' mapperInterface. Bean already defined with the same name!
+[2018-07-25 23:30:24.425] [main] [WARN ] org.mybatis.spring.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'projectsMapper' and 'com.xxb.model.mapper.ProjectsMapper' mapperInterface. Bean already defined with the same name!
+[2018-07-25 23:30:24.426] [main] [WARN ] org.mybatis.spring.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'roleMapper' and 'com.xxb.model.mapper.RoleMapper' mapperInterface. Bean already defined with the same name!
+[2018-07-25 23:30:24.426] [main] [WARN ] org.mybatis.spring.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'roleMenuMapper' and 'com.xxb.model.mapper.RoleMenuMapper' mapperInterface. Bean already defined with the same name!
+[2018-07-25 23:30:24.427] [main] [WARN ] org.mybatis.spring.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'userRoleMapper' and 'com.xxb.model.mapper.UserRoleMapper' mapperInterface. Bean already defined with the same name!
+[2018-07-25 23:30:24.434] [main] [WARN ] org.mybatis.spring.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'usersMapper' and 'com.xxb.model.mapper.UsersMapper' mapperInterface. Bean already defined with the same name!
+[2018-07-25 23:30:24.435] [main] [WARN ] org.mybatis.spring.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[com.xxb.model.mapper]' package. Please check your configuration.
+[2018-07-25 23:30:26.946] [main] [INFO ] com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+[2018-07-25 23:30:31.217] [main] [INFO ] s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)]
+[2018-07-25 23:30:33.122] [main] [INFO ] s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+[2018-07-25 23:30:33.144] [main] [INFO ] s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+[2018-07-25 23:30:33.185] [main] [INFO ] s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+[2018-07-25 23:30:33.479] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: insertUsingPOST_1
+[2018-07-25 23:30:33.594] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: insertUsingPOST_2
+[2018-07-25 23:30:33.622] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_1
+[2018-07-25 23:30:33.627] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: insertUsingPOST_3
+[2018-07-25 23:30:33.637] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: queryUsingGET_1
+[2018-07-25 23:30:33.640] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPUT_1
+[2018-07-25 23:30:33.644] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_2
+[2018-07-25 23:30:33.652] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: insertUsingPOST_4
+[2018-07-25 23:30:33.655] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: queryUsingGET_2
+[2018-07-25 23:30:33.661] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPUT_2
+[2018-07-25 23:30:33.665] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_3
+[2018-07-25 23:30:33.676] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: insertUsingPOST_5
+[2018-07-25 23:30:33.727] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: queryUsingGET_3
+[2018-07-25 23:30:33.741] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPUT_3
+[2018-07-25 23:30:33.780] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_4
+[2018-07-25 23:30:33.794] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: insertUsingPOST_6
+[2018-07-25 23:30:33.803] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: queryUsingGET_4
+[2018-07-25 23:30:33.815] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPUT_4
+[2018-07-25 23:30:33.826] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_5
+[2018-07-25 23:30:33.844] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: insertUsingPOST_7
+[2018-07-25 23:30:33.859] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPUT_5
+[2018-07-25 23:30:33.894] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_6
+[2018-07-25 23:30:34.042] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: insertUsingPOST_8
+[2018-07-25 23:30:34.074] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_7
+[2018-07-25 23:30:34.102] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: insertUsingPOST_9
+[2018-07-25 23:30:34.121] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPUT_6
+[2018-07-25 23:30:34.128] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_8
+[2018-07-25 23:30:34.134] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: insertUsingPOST_10
+[2018-07-25 23:30:34.141] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: queryUsingPOST_1
+[2018-07-25 23:30:34.145] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: queryUsingGET_5
+[2018-07-25 23:30:34.159] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_9
+[2018-07-25 23:30:34.163] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: insertUsingPOST_11
+[2018-07-25 23:30:34.166] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: queryUsingGET_6
+[2018-07-25 23:30:34.169] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPUT_7
+[2018-07-25 23:30:34.185] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: changeStatusUsingPUT_1
+[2018-07-25 23:30:34.190] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_10
+[2018-07-25 23:30:34.197] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: exportUsersUsingPOST_1
+[2018-07-25 23:30:34.240] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: insertUsingPOST_12
+[2018-07-25 23:30:34.272] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: queryUsingGET_7
+[2018-07-25 23:30:34.308] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPUT_8
+[2018-07-25 23:30:34.358] [main] [INFO ] com.xxb.model.service.IUsersServiceTest - Started IUsersServiceTest in 31.832 seconds (JVM running for 33.602)
+[2018-07-25 23:30:34.722] [main] [DEBUG] com.xxb.model.mapper.UsersMapper.getExportUserList - ==>  Preparing: SELECT u.id AS id, u.name AS `name`, g.name AS `group`, p.name AS post, u.user_name AS userName, u.telephone AS telephone, u.qq_email AS qqEmail, u.create_time AS createTime, u.login_time AS loginTime, case when u.status=0 then '禁用' else '启用' END AS status, count(l.user_id) AS numLogin FROM `users` u LEFT JOIN `dict` g ON u.`group` = g.id and g.type = 2 LEFT JOIN `dict` p ON u.post = p.id and p.type = 3 LEFT JOIN `login_log` l ON u.id = l.user_id WHERE u.delete_flag = 1 AND u.id in ( ? ) group by u.id ORDER BY u.id 
+[2018-07-25 23:30:34.758] [main] [DEBUG] com.xxb.model.mapper.UsersMapper.getExportUserList - ==> Parameters: 1(Integer)
+[2018-07-25 23:30:34.814] [main] [DEBUG] com.xxb.model.mapper.UsersMapper.getExportUserList - <==      Total: 0
+[2018-07-25 23:30:34.829] [main] [DEBUG] com.xxb.model.mapper.UsersMapper.selectById - ==>  Preparing: SELECT id AS id,img,`name`,`group`,post,user_name AS userName,user_password AS userPassword,salt,telephone,qq_email AS qqEmail,create_time AS createTime,login_time AS loginTime,`status`,delete_flag AS deleteFlag FROM users WHERE id=? 
+[2018-07-25 23:30:34.830] [main] [DEBUG] com.xxb.model.mapper.UsersMapper.selectById - ==> Parameters: 1(Integer)
+[2018-07-25 23:30:34.872] [main] [DEBUG] com.xxb.model.mapper.UsersMapper.selectById - <==      Total: 1
+[2018-07-25 23:30:34.925] [Thread-2] [INFO ] com.alibaba.druid.pool.DruidDataSource - {dataSource-1} closed
+[2018-07-25 23:34:30.186] [main] [INFO ] com.xxb.model.service.IUsersServiceTest - Starting IUsersServiceTest on chendeMacBook-Pro.local with PID 12269 (started by chen in /Users/chen/Documents/XXB/projectsmanager/projects-api)
+[2018-07-25 23:34:30.190] [main] [INFO ] com.xxb.model.service.IUsersServiceTest - No active profile set, falling back to default profiles: default
+[2018-07-25 23:34:31.268] [main] [WARN ] org.mybatis.spring.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'adviceMapper' and 'com.xxb.model.mapper.AdviceMapper' mapperInterface. Bean already defined with the same name!
+[2018-07-25 23:34:31.268] [main] [WARN ] org.mybatis.spring.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'adviceProgressMapper' and 'com.xxb.model.mapper.AdviceProgressMapper' mapperInterface. Bean already defined with the same name!
+[2018-07-25 23:34:31.268] [main] [WARN ] org.mybatis.spring.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'applicationsMapper' and 'com.xxb.model.mapper.ApplicationsMapper' mapperInterface. Bean already defined with the same name!
+[2018-07-25 23:34:31.268] [main] [WARN ] org.mybatis.spring.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'bugCollectionMapper' and 'com.xxb.model.mapper.BugCollectionMapper' mapperInterface. Bean already defined with the same name!
+[2018-07-25 23:34:31.269] [main] [WARN ] org.mybatis.spring.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'bugOperationMapper' and 'com.xxb.model.mapper.BugOperationMapper' mapperInterface. Bean already defined with the same name!
+[2018-07-25 23:34:31.269] [main] [WARN ] org.mybatis.spring.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'dictMapper' and 'com.xxb.model.mapper.DictMapper' mapperInterface. Bean already defined with the same name!
+[2018-07-25 23:34:31.269] [main] [WARN ] org.mybatis.spring.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'loginLogMapper' and 'com.xxb.model.mapper.LoginLogMapper' mapperInterface. Bean already defined with the same name!
+[2018-07-25 23:34:31.269] [main] [WARN ] org.mybatis.spring.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'logsMapper' and 'com.xxb.model.mapper.LogsMapper' mapperInterface. Bean already defined with the same name!
+[2018-07-25 23:34:31.269] [main] [WARN ] org.mybatis.spring.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'menuMapper' and 'com.xxb.model.mapper.MenuMapper' mapperInterface. Bean already defined with the same name!
+[2018-07-25 23:34:31.276] [main] [WARN ] org.mybatis.spring.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'msgMapper' and 'com.xxb.model.mapper.MsgMapper' mapperInterface. Bean already defined with the same name!
+[2018-07-25 23:34:31.278] [main] [WARN ] org.mybatis.spring.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'msgSendMapper' and 'com.xxb.model.mapper.MsgSendMapper' mapperInterface. Bean already defined with the same name!
+[2018-07-25 23:34:31.286] [main] [WARN ] org.mybatis.spring.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'packagesMapper' and 'com.xxb.model.mapper.PackagesMapper' mapperInterface. Bean already defined with the same name!
+[2018-07-25 23:34:31.286] [main] [WARN ] org.mybatis.spring.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'projectsMapper' and 'com.xxb.model.mapper.ProjectsMapper' mapperInterface. Bean already defined with the same name!
+[2018-07-25 23:34:31.286] [main] [WARN ] org.mybatis.spring.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'roleMapper' and 'com.xxb.model.mapper.RoleMapper' mapperInterface. Bean already defined with the same name!
+[2018-07-25 23:34:31.287] [main] [WARN ] org.mybatis.spring.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'roleMenuMapper' and 'com.xxb.model.mapper.RoleMenuMapper' mapperInterface. Bean already defined with the same name!
+[2018-07-25 23:34:31.288] [main] [WARN ] org.mybatis.spring.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'userRoleMapper' and 'com.xxb.model.mapper.UserRoleMapper' mapperInterface. Bean already defined with the same name!
+[2018-07-25 23:34:31.290] [main] [WARN ] org.mybatis.spring.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'usersMapper' and 'com.xxb.model.mapper.UsersMapper' mapperInterface. Bean already defined with the same name!
+[2018-07-25 23:34:31.291] [main] [WARN ] org.mybatis.spring.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[com.xxb.model.mapper]' package. Please check your configuration.
+[2018-07-25 23:34:33.359] [main] [INFO ] com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+[2018-07-25 23:34:37.551] [main] [INFO ] s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)]
+[2018-07-25 23:34:39.485] [main] [INFO ] s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+[2018-07-25 23:34:39.509] [main] [INFO ] s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+[2018-07-25 23:34:39.549] [main] [INFO ] s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+[2018-07-25 23:34:39.856] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: insertUsingPOST_1
+[2018-07-25 23:34:39.968] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: insertUsingPOST_2
+[2018-07-25 23:34:39.997] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_1
+[2018-07-25 23:34:40.004] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: insertUsingPOST_3
+[2018-07-25 23:34:40.013] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: queryUsingGET_1
+[2018-07-25 23:34:40.018] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPUT_1
+[2018-07-25 23:34:40.023] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_2
+[2018-07-25 23:34:40.030] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: insertUsingPOST_4
+[2018-07-25 23:34:40.034] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: queryUsingGET_2
+[2018-07-25 23:34:40.038] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPUT_2
+[2018-07-25 23:34:40.043] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_3
+[2018-07-25 23:34:40.051] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: insertUsingPOST_5
+[2018-07-25 23:34:40.062] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: queryUsingGET_3
+[2018-07-25 23:34:40.079] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPUT_3
+[2018-07-25 23:34:40.093] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_4
+[2018-07-25 23:34:40.106] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: insertUsingPOST_6
+[2018-07-25 23:34:40.112] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: queryUsingGET_4
+[2018-07-25 23:34:40.116] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPUT_4
+[2018-07-25 23:34:40.129] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_5
+[2018-07-25 23:34:40.135] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: insertUsingPOST_7
+[2018-07-25 23:34:40.166] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPUT_5
+[2018-07-25 23:34:40.225] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_6
+[2018-07-25 23:34:40.335] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: insertUsingPOST_8
+[2018-07-25 23:34:40.367] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_7
+[2018-07-25 23:34:40.401] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: insertUsingPOST_9
+[2018-07-25 23:34:40.435] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPUT_6
+[2018-07-25 23:34:40.439] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_8
+[2018-07-25 23:34:40.445] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: insertUsingPOST_10
+[2018-07-25 23:34:40.453] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: queryUsingPOST_1
+[2018-07-25 23:34:40.457] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: queryUsingGET_5
+[2018-07-25 23:34:40.466] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_9
+[2018-07-25 23:34:40.471] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: insertUsingPOST_11
+[2018-07-25 23:34:40.473] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: queryUsingGET_6
+[2018-07-25 23:34:40.478] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPUT_7
+[2018-07-25 23:34:40.496] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: changeStatusUsingPUT_1
+[2018-07-25 23:34:40.501] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingDELETE_10
+[2018-07-25 23:34:40.509] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: exportUsersUsingPOST_1
+[2018-07-25 23:34:40.572] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: insertUsingPOST_12
+[2018-07-25 23:34:40.619] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: queryUsingGET_7
+[2018-07-25 23:34:40.648] [main] [INFO ] s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPUT_8
+[2018-07-25 23:34:40.686] [main] [INFO ] com.xxb.model.service.IUsersServiceTest - Started IUsersServiceTest in 31.048 seconds (JVM running for 32.409)
+[2018-07-25 23:34:40.945] [main] [DEBUG] com.xxb.model.mapper.UsersMapper.getExportUserList - ==>  Preparing: SELECT u.id AS id, u.name AS `name`, g.name AS `group`, p.name AS post, u.user_name AS userName, u.telephone AS telephone, u.qq_email AS qqEmail, u.create_time AS createTime, u.login_time AS loginTime, case when u.status=0 then '禁用' else '启用' END AS status, count(l.user_id) AS numLogin FROM `users` u LEFT JOIN `dict` g ON u.`group` = g.id and g.type = 2 LEFT JOIN `dict` p ON u.post = p.id and p.type = 3 LEFT JOIN `login_log` l ON u.id = l.user_id WHERE u.delete_flag = 1 AND u.id in ( ? ) group by u.id ORDER BY u.id 
+[2018-07-25 23:34:40.991] [main] [DEBUG] com.xxb.model.mapper.UsersMapper.getExportUserList - ==> Parameters: 1(Integer)
+[2018-07-25 23:34:41.041] [main] [DEBUG] com.xxb.model.mapper.UsersMapper.getExportUserList - <==      Total: 0
+[2018-07-25 23:34:41.052] [main] [DEBUG] com.xxb.model.mapper.UsersMapper.selectById - ==>  Preparing: SELECT id AS id,img,`name`,`group`,post,user_name AS userName,user_password AS userPassword,salt,telephone,qq_email AS qqEmail,create_time AS createTime,login_time AS loginTime,`status`,delete_flag AS deleteFlag FROM users WHERE id=? 
+[2018-07-25 23:34:41.052] [main] [DEBUG] com.xxb.model.mapper.UsersMapper.selectById - ==> Parameters: 1(Integer)
+[2018-07-25 23:34:41.094] [main] [DEBUG] com.xxb.model.mapper.UsersMapper.selectById - <==      Total: 1
+[2018-07-25 23:34:41.149] [Thread-2] [INFO ] com.alibaba.druid.pool.DruidDataSource - {dataSource-1} closed

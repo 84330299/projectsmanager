@@ -1,0 +1,47 @@
+#server
+server:
+  port: 8085
+  api:
+    path: /api/**
+  tomcat:
+    max-threads: 100
+    min-spare-threads: 20
+  connection-timeout: 5000
+#swagger
+swagger:
+  enable: true
+#jwt 12小时
+jwt:
+  expires: 43200
+#datasource
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://47.104.11.3:3306/app-version?characterEncoding=UTF8
+    username: root
+    password: xuexunbao!@#.
+    driver-class-name: com.mysql.jdbc.Driver
+#  thymeleaf:
+#    prefix: classpath:/static/**
+#redis
+  redis:
+    database: 0
+    host: 47.93.228.120
+    port: 6379
+    password:
+    jedis:
+      pool:
+        max-active: 8
+        max-wait: 1s
+        max-idle: 8
+        min-idle: 0
+    timeout: 5000
+#  resources:
+#    static-locations: classpath:/static/,classpath:/exportFile/
+#  mvc:
+#    static-path-pattern: /static/**
+#mybatisplus
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*Mapper.xml
+  configuration:
+    cache-enabled: true

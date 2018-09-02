@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xxb.model.mapper.BugCollectionMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.xxb.model.entity.BugCollection">
+        <id column="id" property="id"/>
+        <result column="app_name" property="appName"/>
+        <result column="app_version" property="appVersion"/>
+        <result column="urgency" property="urgency"/>
+        <result column="os_type" property="osType"/>
+        <result column="create_time" property="createTime"/>
+        <result column="create_person" property="createPerson"/>
+        <result column="appoint_person" property="appointPerson"/>
+        <result column="bug_describe" property="bugDescribe"/>
+        <result column="bug_info" property="bugInfo"/>
+        <result column="deadline" property="deadline"/>
+        <result column="phone_model" property="phoneModel"/>
+        <result column="solution" property="solution"/>
+        <result column="solve_time" property="solveTime"/>
+        <result column="status" property="status"/>
+        <result column="solve_person" property="solvePerson"/>
+        <result column="active_flag" property="activeFlag"/>
+    </resultMap>
+
+    <select id="selectAll" resultType="com.xxb.web.dto.BugCollectionDto">
+        SELECT
+            b.id AS id,
+        	concat(b.app_name,b.app_version) AS appName,
+	        b.urgency AS urgency,
+	        b.os_type AS osType,
+	        b.create_time AS createTime,
+	        u.`name` AS createPerson,
+	        u1.`name` AS appointPerson,
+	        b.bug_describe AS bugDescribe,
+	        b.deadline AS deadline,
+	        b.phone_model AS phoneModel,
+	        b.solution AS solution,
+	        b.solve_time AS solveTime,
+	        b.`status` AS `status`
+        FROM
+	        bug_collection b
+	        LEFT JOIN users u ON b.create_person = u.id
+	        LEFT JOIN users u1 ON b.appoint_person = u1.id
+        WHERE
+	        1 =1
+	    ORDER BY
+	        b.`status`,b.urgency,b.create_time desc
+    </select>
+
+    <select id="selectByFlag" resultType="com.xxb.web.dto.BugCollectionDto">
+        SELECT
+        b.id AS id,
+        concat(b.app_name,b.app_version) AS appName,
+        b.urgency AS urgency,
+        b.os_type AS osType,
+        b.create_time AS createTime,
+        u.`name` AS createPerson,
+        u1.`name` AS appointPerson,
+        b.bug_describe AS bugDescribe,
+        b.deadline AS deadline,
+        b.phone_model AS phoneModel,
+        b.solution AS solution,
+        b.solve_time AS solveTime,
+        b.`status` AS `status`
+        FROM
+        bug_collection b
+        LEFT JOIN users u ON b.create_person = u.id
+        LEFT JOIN users u1 ON b.appoint_person = u1.id
+        where
+        <choose>
+            <when test="_parameter==3">
+                b.active_flag=1
+            </when>
+            <otherwise>
+                b.`status`=#{status}
+            </otherwise>
+        </choose>
+        ORDER BY
+        b.urgency,b.create_time
+    </select>
+
+    <select id="selectMe" resultType="com.xxb.web.dto.BugCollectionDto">
+        SELECT
+        b.id AS id,
+        concat(b.app_name,b.app_version) AS appName,
+        b.urgency AS urgency,
+        b.os_type AS osType,
+        b.create_time AS createTime,
+        u.`name` AS createPerson,
+        u1.`name` AS appointPerson,
+        b.bug_describe AS bugDescribe,
+        b.deadline AS deadline,
+        b.phone_model AS phoneModel,
+        b.solution AS solution,
+        b.solve_time AS solveTime,
+        b.`status` AS `status`
+        FROM
+        bug_collection b
+        LEFT JOIN users u ON b.create_person = u.id
+        LEFT JOIN users u1 ON b.appoint_person = u1.id
+        where
+        <choose>
+            <when test="type==0">
+                b.create_person=#{uid}
+            </when>
+            <when test="type==1">
+                b.appoint_person=#{uid}
+            </when>
+            <when test="type==2">
+                b.solve_person=#{uid}
+            </when>
+            <otherwise>
+                1=1
+            </otherwise>
+        </choose>
+        ORDER BY
+        b.urgency,b.create_time
+    </select>
+
+    <select id="selectByCondition" parameterType="com.xxb.web.param.BugConditionParam"
+            resultType="com.xxb.web.dto.BugCollectionDto">
+        SELECT
+        b.id AS id,
+        concat(b.app_name,b.app_version) AS appName,
+        b.urgency AS urgency,
+        b.os_type AS osType,
+        b.create_time AS createTime,
+        u.`name` AS createPerson,
+        u1.`name` AS appointPerson,
+        b.bug_describe AS bugDescribe,
+        b.deadline AS deadline,
+        b.phone_model AS phoneModel,
+        b.solution AS solution,
+        b.solve_time AS solveTime,
+        b.`status` AS `status`
+        FROM
+        bug_collection b
+        LEFT JOIN users u ON b.create_person = u.id
+        LEFT JOIN users u1 ON b.appoint_person = u1.id
+        where
+        <choose>
+            <when test="bugCondition.appName!=null and bugCondition.appName!=''">
+                b.app_name like concat('%',#{bugCondition.appName},'%')
+            </when>
+            <when test="bugCondition.createPerson!=null and bugCondition.createPerson!=''">
+                u.name like concat('%',#{bugCondition.createPerson},'%')
+            </when>
+            <when test="bugCondition.appointPerson!=null and bugCondition.appointPerson!=''">
+                u1.name like concat('%',#{bugCondition.appointPerson},'%')
+            </when>
+            <otherwise>
+                1=1
+            </otherwise>
+        </choose>
+        <if test="bugCondition.osType!=null and bugCondition.osType!=''">
+            and b.os_type=#{bugCondition.osType}
+        </if>
+        <if test="bugCondition.urgency!=null and bugCondition.urgency!=''">
+            and b.urgency=#{bugCondition.urgency}
+        </if>
+        <!--<if test="bugCondition.applicationName!=null and bugCondition.applicationName!=''">-->
+        <!--and b.app_name=#{bugCondition.applicationName}-->
+        <!--</if>-->
+
+    </select>
+
+    <select id="view" resultType="com.xxb.web.dto.BugViewDto">
+        select
+         b.app_name AS appName,
+         b.app_version AS appVersion,
+         b.urgency AS urgency,
+         b.os_type AS osType,
+         b.phone_model AS phoneModel,
+         b.create_time AS createTime,
+         u.`name` AS createPerson,
+         u1.`name` AS appointPerson,
+         b.deadline AS deadline,
+         b.bug_describe AS bugDescribe,
+         b.bug_info AS bugInfo
+         from  bug_collection b
+        LEFT JOIN users u ON b.create_person = u.id
+        LEFT JOIN users u1 ON b.appoint_person = u1.id
+        where b.id=#{id}
+    </select>
+    <insert id="insertBug" parameterType="com.xxb.model.entity.BugCollection" useGeneratedKeys="true" keyProperty="param.id">
+        insert into bug_collection (
+            create_person,
+            app_name,
+            app_version,
+            os_type,
+            phone_model,
+            appoint_person,
+            urgency,
+            deadline,
+            bug_describe,
+            bug_info,
+            create_time)
+        values (
+            #{param.createPerson},
+            #{param.appName},
+            #{param.appVersion},
+            #{param.osType},
+            #{param.phoneModel},
+            #{param.appointPerson},
+            #{param.urgency},
+            #{param.deadline},
+            #{param.bugDescribe},
+            #{param.bugInfo},
+            #{param.createTime}
+        )
+    </insert>
+
+</mapper>

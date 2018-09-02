@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xxb.model.mapper.RoleMenuMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.xxb.model.entity.RoleMenu">
+        <id column="id" property="id" />
+        <result column="rid" property="rid" />
+        <result column="mid" property="mid" />
+    </resultMap>
+
+    <!--批量插入角色菜单关系，郑鹤-->
+    <insert id="insertRoleMenu">
+        INSERT INTO `role_menu` (rid,mid)
+        VALUES
+        <foreach collection="list" item="mid" separator=",">
+            (#{rid},#{mid})
+        </foreach>
+    </insert>
+
+</mapper>

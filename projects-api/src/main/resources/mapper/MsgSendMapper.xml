@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xxb.model.mapper.MsgSendMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.xxb.model.entity.MsgSend">
+        <id column="id" property="id"/>
+        <result column="phone" property="phone"/>
+        <result column="msg_id" property="msgId"/>
+        <result column="create_time" property="createTime"/>
+        <result column="send_msg" property="sendMsg"/>
+        <result column="user_id" property="userId"/>
+    </resultMap>
+
+    <sql id="MsgSendColumn">
+        id,phone,msg_id,create_time,send_msg,user_id
+    </sql>
+
+    <select id="queryByPage" resultType="com.xxb.model.entity.MsgSend">
+        select <include refid="MsgSendColumn"></include> from msg_send
+    </select>
+
+
+    <select id="selectMsgList" resultType="com.xxb.web.dto.MsgListDto">
+        select
+        m.id,
+        u.name AS userName,
+        r.name AS roleName,
+        u.telephone AS telephone,
+--         d.value AS `group`,
+--         z.value AS post,
+        m.send_msg AS sendMsg,
+        m.create_time AS createTime
+        FROM
+        `msg_send` m
+        LEFT JOIN `users` u on m.user_id=u.id
+--         LEFT JOIN `dict` d on d.id=u.group and d.type=2
+--         LEFT JOIN `dict` z on z.id=u.post and u.post=3
+        LEFT JOIN `user_role` AS ur on ur.uid=u.id
+        LEFT JOIN `role` r on r.id=ur.rid
+        <where>
+            <if test="param.code!=null and param.code=='1'.toString()">
+                AND m.send_msg='OK'
+            </if>
+            <if test="param.code!=null and param.code=='0'.toString()">
+                AND m.send_msg!='OK'
+            </if>
+            <if test="param.roleId!=null">
+                AND r.id=#{param.roleId}
+            </if>
+            <!--<if test="param.roleId!=null">-->
+                <!--AND m.user_id in-->
+                <!--<foreach item="item" collection="param.uids" index="index" open="(" separator="," close=")">-->
+                    <!--#{item}-->
+                <!--</foreach>-->
+            <!--</if>-->
+            <if test="param.startTime!=null">
+                AND m.create_time>=#{param.startTime}
+            </if>
+            <if test="param.endTime!=null">
+                AND m.create_time &lt; #{param.endTime}
+            </if>
+            <if test="param.userName!=null and param.userName!=''">
+                AND u.name=#{param.userName}
+            </if>
+            <if test="param.telephone!=null">
+                AND u.telephone=#{param.telephone}
+            </if>
+        </where>
+        group by m.id
+    </select>
+</mapper>

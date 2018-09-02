@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xxb.model.mapper.ProjectsMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.xxb.model.entity.Projects">
+        <id column="id" property="id" />
+        <result column="product_name" property="productName" />
+        <result column="version" property="version" />
+        <result column="product_principal_id" property="productPrincipalId" />
+        <result column="test_principal_id" property="testPrincipalId" />
+        <result column="research_principal_id" property="researchPrincipalId" />
+        <result column="project_principal_id" property="projectPrincipalId" />
+        <result column="product_prototype" property="productPrototype" />
+        <result column="product_description" property="productDescription" />
+        <result column="status" property="status" />
+        <result column="user_id" property="userId" />
+        <result column="create_time" property="createTime" />
+        <result column="role_id" property="roleId" />
+        <result column="delete_flag" property="deleteFlag" />
+    </resultMap>
+
+    <update id="batchDeleteProject">
+        UPDATE projects set delete_flag =1
+        <where>
+            id IN
+            <foreach item="item" collection="ids" index="index" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </where>
+    </update>
+</mapper>

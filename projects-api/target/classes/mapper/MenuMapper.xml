@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xxb.model.mapper.MenuMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.xxb.model.entity.Menu">
+        <id column="id" property="id"/>
+        <result column="code" property="code"/>
+        <result column="pid" property="pid"/>
+        <result column="name" property="name"/>
+        <result column="icon" property="icon"/>
+        <result column="url" property="url"/>
+        <result column="num" property="num"/>
+        <result column="levels" property="levels"/>
+        <result column="ismenu" property="ismenu"/>
+        <result column="tips" property="tips"/>
+        <result column="status" property="status"/>
+    </resultMap>
+
+    <select id="findByRids" resultType="com.xxb.model.entity.Menu">
+        SELECT DISTINCT m.*
+        FROM role_menu rm
+        LEFT JOIN menu m ON rm.mid = m.id
+        <where>
+            m.name IS NOT NULL
+            AND m.status = 1
+            <if test="pid != null">
+                AND m.pid = #{pid}
+            </if>
+            <if test="rids != null and rids.size &gt; 0">
+                AND rm.rid IN
+                <foreach close=")" collection="rids" item="rid" open="(" separator=",">
+                    #{rid}
+                </foreach>
+            </if>
+        </where>
+        ORDER BY m.num
+    </select>
+
+</mapper>
